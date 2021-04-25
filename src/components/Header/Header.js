@@ -15,11 +15,11 @@ const Header = (props) => {
             event.preventDefault();
             const todoData = {
                 text: enteredTodo,
-                isDone: false
+                isDone: false,
+                show: true,
+                time: new Date()
             };
-            props.addElement(todoData);
-            
-            console.log(todoData);
+            props.addTodo(todoData)
             setEnteredTodo("");
         }
 

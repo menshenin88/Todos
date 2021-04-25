@@ -3,16 +3,13 @@ import './Todoapp.css';
 import Header from './Header/Header';
 
 const Todoapp = (props) => {
-    const saveEntryHandler = (enteredData) => {
-        const data=Object.values(enteredData.text)
-        props.addTodo(data);
-        console.log(enteredData.text);
-        console.log(data);
+    const addTodo = (enteredData) => {
+        props.addTodo(enteredData);
     }
 
     return(
         <section className="todoapp">
-            <Header addElement={saveEntryHandler}/>
+            <Header addTodo={addTodo}/>
         </section>
     )
 };
