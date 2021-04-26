@@ -19,7 +19,7 @@ const Footer = (props) => {
 
     return (
         <footer className="footer">
-            <span className="todo-count">{props.todolist.todolist.filter(i => i.isDone === false).length} items left</span>
+            <span className="todo-count">{props.todolist.filter(i => i.isDone === false).length} items left</span>
             <ul className="filters">
                 <li>
                     <button onClick={showAll} className="selected">All</button>

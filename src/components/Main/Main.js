@@ -22,11 +22,12 @@ const Main = (props) => {
 
     return (
         <div>
+            {console.log(props)}
             <section className="main">
                 <ul className="todo-list">
-                    <Task todolist={props}/>
+                    <Task todolist={props.todolist} editTodo={props.editTodo} delTodo={props.delTodo} reviseTodo={props.reviseTodo} markTodo={props.markTodo}/>
                 </ul>
-                <Footer todolist={props} showActive={showActive} showAll={showAll} showCompleted={showCompleted} clearCompleted={clearCompleted}/>
+                <Footer todolist={props.todolist} showActive={showActive} showAll={showAll} showCompleted={showCompleted} clearCompleted={clearCompleted}/>
             </section>
         </div>
 

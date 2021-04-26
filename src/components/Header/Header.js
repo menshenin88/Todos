@@ -14,6 +14,7 @@ const Header = (props) => {
         if (event.key === 'Enter') {
             event.preventDefault();
             const todoData = {
+                id: Math.floor(Math.random() * 10000),
                 text: enteredTodo,
                 isDone: false,
                 show: true,

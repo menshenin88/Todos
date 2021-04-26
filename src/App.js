@@ -6,6 +6,7 @@ import Todoapp from './components/Todoapp';
 function App() {
   const [todos, setTodos] = useState([
     {
+      id:1,
       text: "This is a sampel todo",
       isDone: false,
       edit: false,
@@ -13,6 +14,7 @@ function App() {
       time: new Date()
     },
     {
+      id:2,
       text: "This is todo number two",
       isDone: false,
       edit: false,
@@ -20,6 +22,7 @@ function App() {
       time: new Date()
     },
     {
+      id:3,
       text: "This is todo number three",
       isDone: true,
       edit: false,
@@ -35,49 +38,46 @@ function App() {
   };
 
   const delTodo = id => {
-    const newTodo = [...todos];
-    newTodo.splice(id, 1);
-    setTodos(newTodo);
-    console.log(todos)
+    const newTodo = todos;
+    const todoList = newTodo.filter(i => i.id !== id);
+    setTodos(todoList);
   };
 
   const markTodo = id => {
-    const newTodo = [...todos];
-    if (newTodo[id].isDone) {
-      newTodo[id].isDone = false;
-      setTodos(newTodo)
-    } else {
-      newTodo[id].isDone = true;
-      setTodos(newTodo)
-    }  
-  };
+    const newTodo = todos
+    newTodo.map(i => {
+      if ((i.id === id) && (i.isDone = false)) {i.isDone = true}
+      else if ((i.id === id) && (i.isDone = true)) {i.isDone = false}
+      return i
+    });
+    setTodos(newTodo)
+  }
 
   const editTodo = id => {
-    const newTodo = [...todos];
-    if (newTodo[id].edit) {
-      newTodo[id].edit = false;
-      setTodos(newTodo)
-    } else {
-      newTodo[id].edit = true;
-      setTodos(newTodo)
-    }  
-  }
+    const newTodo = todos
+    newTodo.map(i => {
+      if (i.id === id) {i.edit = true}
+      return i
+    });
+    setTodos(newTodo)
+  };
 
   const reviseTodo = (id, e) => {
-    const newTodo = [...todos]
+    const newTodo = todos
     if (e.key === 'Enter'){
-      newTodo[id].text = e.target.value;
-      newTodo[id].edit = false;
+      newTodo.map(i => {if(i.id === id){
+        i.text=e.target.value;
+        i.edit=false;
+      } return i})
       setTodos(newTodo)
     }
-  }
+  };
 
   const showActive = () => {
     const newTodo = [...todos];
     newTodo.filter(i => i.isDone === true).map(i => i.show = false);
     newTodo.filter(i => i.isDone === false).map(i => i.show = true);
     setTodos(newTodo);
-    console.log(newTodo)
   };
 
   const showCompleted = () => {
