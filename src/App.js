@@ -45,31 +45,31 @@ function App() {
 
   const markTodo = id => {
     const newTodo = todos
-    newTodo.map(i => {
-      if ((i.id === id) && (i.isDone = false)) {i.isDone = true}
-      else if ((i.id === id) && (i.isDone = true)) {i.isDone = false}
+    const marked = newTodo.map(i => {
+      if ((i.id === id) && (i.isDone === false)) {i.isDone = true}
+      else if ((i.id === id) && (i.isDone === true)) {i.isDone = false}
       return i
     });
-    setTodos(newTodo)
+    setTodos(marked)
   }
 
   const editTodo = id => {
     const newTodo = todos
-    newTodo.map(i => {
+    const edited = newTodo.map(i => {
       if (i.id === id) {i.edit = true}
       return i
     });
-    setTodos(newTodo)
+    setTodos(edited)
   };
 
   const reviseTodo = (id, e) => {
     const newTodo = todos
     if (e.key === 'Enter'){
-      newTodo.map(i => {if(i.id === id){
+      const revisedNew = newTodo.map(i => {if(i.id === id){
         i.text=e.target.value;
         i.edit=false;
       } return i})
-      setTodos(newTodo)
+      setTodos(revisedNew)
     }
   };
 

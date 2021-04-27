@@ -13,8 +13,8 @@ const task = (props) => {
     return (
         <div>
             
-            {props.todolist.filter(i => i.show === true).map((todo, index) => (    
-                <li className={todoClass(todo)} key={index}>
+            {props.todolist.filter(i => i.show === true).map((todo, index) =>   
+                <li className={todoClass(todo)} key={todo.id}>
                     {console.log(todo)}
                     <div className="view">
                     <input className="toggle" type="checkbox" defaultChecked={todo.isDone? true: false} onClick={() => props.markTodo(todo.id)} />
@@ -30,7 +30,7 @@ const task = (props) => {
                         : void 0
                     }
                 </li>
-            ))}
+            )}
         </div>
     )
 };
