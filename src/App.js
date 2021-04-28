@@ -34,17 +34,16 @@ function App() {
   ]
   );
 
-  const thick = todos.map(i => {
-    {i.time += 1}
-    return i
-  });
+  const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTodos(thick);
+    setInterval(() => {
+      setSeconds(seconds +1);
     }, 1000);
-  }
+    //return clearInterval(interval);
+  }, [seconds]
   )
+  console.log(seconds)
 
   const addTodo = text => {
     const newTodo = [...todos, text ];
@@ -126,6 +125,7 @@ function App() {
         showAll={showAll}
         clearCompleted={clearCompleted}
       />
+      <span>{seconds}</span>
     </div>
   );
 }
