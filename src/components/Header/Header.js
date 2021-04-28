@@ -18,7 +18,7 @@ const Header = (props) => {
                 text: enteredTodo,
                 isDone: false,
                 show: true,
-                time: new Date()
+                time: 0
             };
             props.addTodo(todoData)
             setEnteredTodo("");

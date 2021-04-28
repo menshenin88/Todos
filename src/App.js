@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css';
 import Main from './components/Main/Main';
 import Todoapp from './components/Todoapp';
 
 function App() {
+
+
   const [todos, setTodos] = useState([
     {
       id:1,
@@ -11,7 +13,7 @@ function App() {
       isDone: false,
       edit: false,
       show: true,
-      time: new Date()
+      time: 0
     },
     {
       id:2,
@@ -19,7 +21,7 @@ function App() {
       isDone: false,
       edit: false,
       show: true,
-      time: new Date()
+      time: 0
     },
     {
       id:3,
@@ -27,10 +29,22 @@ function App() {
       isDone: true,
       edit: false,
       show: true,
-      time: new Date()
+      time: 0
     }
   ]
   );
+
+  const thick = todos.map(i => {
+    {i.time += 1}
+    return i
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTodos(thick);
+    }, 1000);
+  }
+  )
 
   const addTodo = text => {
     const newTodo = [...todos, text ];
@@ -44,8 +58,7 @@ function App() {
   };
 
   const markTodo = id => {
-    const newTodo = todos
-    const marked = newTodo.map(i => {
+    const marked = todos.map(i => {
       if ((i.id === id) && (i.isDone === false)) {i.isDone = true}
       else if ((i.id === id) && (i.isDone === true)) {i.isDone = false}
       return i
@@ -54,8 +67,7 @@ function App() {
   }
 
   const editTodo = id => {
-    const newTodo = todos
-    const edited = newTodo.map(i => {
+    const edited = todos.map(i => {
       if (i.id === id) {i.edit = true}
       return i
     });
@@ -63,9 +75,8 @@ function App() {
   };
 
   const reviseTodo = (id, e) => {
-    const newTodo = todos
     if (e.key === 'Enter'){
-      const revisedNew = newTodo.map(i => {if(i.id === id){
+      const revisedNew = todos.map(i => {if(i.id === id){
         i.text=e.target.value;
         i.edit=false;
       } return i})
